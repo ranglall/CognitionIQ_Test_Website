@@ -490,6 +490,9 @@ p  { margin: 0 0 1em; }
 
 .form-note { margin: 12px 0 0; font-size: .85rem; color: var(--ink-soft); text-align: center; }
 .form-note.error { color: var(--red-dark); }
+.form-note.success { color: #1a7f4b; font-weight: 500; }
+.contact-form .btn:disabled { opacity: .7; cursor: wait; transform: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 /* Footer */
 .site-footer { background: var(--navy-900); color: rgba(255, 255, 255, .65); padding: 36px 0; font-size: .9rem; }
