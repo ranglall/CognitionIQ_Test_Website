@@ -268,8 +268,11 @@
           </ul>
         </div>
 
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/info@cognition-iq.com" method="POST" novalidate>
           <h3>Send a message</h3>
+          <input type="hidden" name="_subject" value="New message from the CognitionIQ website">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Name <span aria-hidden="true">*</span></label>
             <input id="name" name="name" type="text" autocomplete="name" required>
@@ -283,7 +286,7 @@
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-          <p class="form-note" id="form-note" role="status">Opens your email app with your message ready to send.</p>
+          <p class="form-note" id="form-note" role="status">We'll get back to you as soon as possible.</p>
         </form>
       </div>
     </section>
@@ -320,21 +323,43 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Contact form: GitHub Pages has no server, so compose an email instead
-    document.getElementById('contact-form').addEventListener('submit', e => {
+    // Contact form: sent via FormSubmit (GitHub Pages has no server of its own)
+    document.getElementById('contact-form').addEventListener('submit', async e => {
       e.preventDefault();
       const f = e.target;
       const note = document.getElementById('form-note');
+      const button = f.querySelector('button[type="submit"]');
+      const setNote = (text, state) => {
+        note.textContent = text;
+        note.classList.remove('error', 'success');
+        if (state) note.classList.add(state);
+      };
+
       if (!f.checkValidity()) {
-        note.textContent = 'Please fill in your name, a valid email and a message.';
-        note.classList.add('error');
+        setNote('Please fill in your name, a valid email and a message.', 'error');
         f.reportValidity();
         return;
       }
-      note.classList.remove('error');
-      const subject = encodeURIComponent('Website enquiry from ' + f.name.value);
-      const body = encodeURIComponent(f.message.value + '\n\n— ' + f.name.value + ' (' + f.email.value + ')');
-      window.location.href = 'mailto:info@cognition-iq.com?subject=' + subject + '&body=' + body;
+      if (f._honey.value) return; // bot filled the hidden field
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/info@cognition-iq.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(f)))
+        });
+        const data = await res.json();
+        if (!res.ok || String(data.success) !== 'true') throw new Error(data.message);
+        f.reset();
+        setNote('Thank you! Your message has been sent. We\'ll be in touch soon.', 'success');
+      } catch (err) {
+        setNote('Sorry, your message could not be sent. Please email us at info@cognition-iq.com.', 'error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Send Message';
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
