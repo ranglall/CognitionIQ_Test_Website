@@ -12,7 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/team.jpg">
 
-  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -24,8 +25,7 @@
   <header class="site-header" id="top">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="CognitionIQ home">
-        <img src="assets/logo-mark.svg" alt="" width="38" height="32">
-        <span>Cognition<span class="iq">IQ</span></span>
+        <img src="assets/logo-white.webp" alt="CognitionIQ" width="640" height="90">
       </a>
 
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
@@ -56,29 +56,21 @@
           </div>
         </div>
 
-        <!-- Abstract eye-tracking illustration -->
+        <!-- Logo mark inside eye-tracking rings -->
         <div class="hero-visual" aria-hidden="true">
           <svg viewBox="0 0 400 400" class="eye-graphic">
-            <defs>
-              <radialGradient id="iris" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#5b8ce0"/>
-                <stop offset="70%" stop-color="#2a63b8"/>
-                <stop offset="100%" stop-color="#1b3f7a"/>
-              </radialGradient>
-            </defs>
             <circle cx="200" cy="200" r="190" class="ring ring-1"/>
             <circle cx="200" cy="200" r="150" class="ring ring-2"/>
             <circle cx="200" cy="200" r="110" class="ring ring-3"/>
-            <path d="M40 200 Q200 60 360 200 Q200 340 40 200 Z" class="eye-outline"/>
-            <circle cx="200" cy="200" r="62" fill="url(#iris)"/>
-            <circle cx="200" cy="200" r="26" fill="#0e1222"/>
-            <circle cx="214" cy="186" r="8" fill="#fff" opacity=".85"/>
-            <polyline points="70,120 130,95 170,140 245,110 300,150 330,120" class="gaze"/>
-            <circle cx="70" cy="120" r="5" class="gaze-dot"/>
-            <circle cx="170" cy="140" r="5" class="gaze-dot"/>
-            <circle cx="245" cy="110" r="5" class="gaze-dot"/>
-            <circle cx="330" cy="120" r="6" class="gaze-dot accent"/>
+            <polyline points="40,250 95,300 150,330 230,345 290,315 345,270" class="gaze"/>
+            <circle cx="40" cy="250" r="5" class="gaze-dot"/>
+            <circle cx="150" cy="330" r="5" class="gaze-dot"/>
+            <circle cx="290" cy="315" r="5" class="gaze-dot"/>
+            <circle cx="345" cy="270" r="6" class="gaze-dot accent"/>
           </svg>
+          <div class="hero-mark">
+            <img src="assets/logo-mark.webp" alt="" width="720" height="440">
+          </div>
         </div>
       </div>
       <div class="hero-slant" aria-hidden="true"></div>
@@ -158,7 +150,7 @@
     <section class="section story" id="story">
       <div class="container story-grid">
         <figure class="story-photo">
-          <img src="assets/team.jpg" alt="The CognitionIQ founding team" loading="lazy" width="986" height="1600">
+          <img src="assets/team.jpg" alt="The CognitionIQ team" loading="lazy" width="1400" height="933">
         </figure>
         <div class="story-copy">
           <p class="eyebrow">About Us</p>
@@ -224,8 +216,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <a href="#top" class="brand" aria-label="Back to top">
-        <img src="assets/logo-mark.svg" alt="" width="32" height="27">
-        <span>Cognition<span class="iq">IQ</span></span>
+        <img src="assets/logo-white.webp" alt="CognitionIQ" width="640" height="90">
       </a>
       <p>&copy; <span id="year">2026</span> CognitionIQ. All rights reserved.</p>
       <a href="mailto:info@cognition-iq.com">info@cognition-iq.com</a>
